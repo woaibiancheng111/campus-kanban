@@ -43,9 +43,19 @@ Default test account (after seed):
 - email: `alice@campus.edu`
 - password: `P@ssw0rd!`
 
-## Docker Compose full stack
+## Docker Compose full stack (dev)
 ```bash
 docker compose up
+```
+
+## Production Docker Deploy
+See `docs/DEPLOY_DOCKER.md`.
+
+Quick commands:
+```bash
+cp .env.example .env
+docker compose -f docker-compose.prod.yml up -d --build
+docker compose -f docker-compose.prod.yml exec api npx prisma migrate deploy
 ```
 
 ## Core APIs (MVP)
