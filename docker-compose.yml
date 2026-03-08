@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: campus_kanban
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  api:
+    image: node:22-slim
+    working_dir: /app
+    volumes:
+      - ./apps/api:/app
+    command: sh -c "npm install && npx prisma generate && npx prisma migrate deploy || true && npm run dev"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/campus_kanban?schema=public
+      JWT_ACCESS_SECRET: dev-secret
+      PORT: 3001
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
+  web:
+    image: node:22-slim
+    working_dir: /app
+    volumes:
+      - ./apps/web:/app
+    command: sh -c "npm install && npm run dev"
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:3001
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  db_data:

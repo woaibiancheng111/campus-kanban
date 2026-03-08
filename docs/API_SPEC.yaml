@@ -1,0 +1,71 @@
+openapi: 3.0.3
+info:
+  title: Campus Kanban API
+  version: 0.1.0
+servers:
+  - url: /api/v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+paths:
+  /auth/register:
+    post:
+      security: []
+      summary: Register
+  /auth/login:
+    post:
+      security: []
+      summary: Login
+  /auth/me:
+    get:
+      summary: Current user
+  /workspaces:
+    get:
+      summary: List my workspaces
+    post:
+      summary: Create workspace
+  /workspaces/{workspaceId}/members:
+    get:
+      summary: List workspace members
+    post:
+      summary: Add member by email
+  /workspaces/{workspaceId}/projects:
+    get:
+      summary: List projects
+    post:
+      summary: Create project
+  /projects/{projectId}/boards:
+    get:
+      summary: List boards
+    post:
+      summary: Create board
+  /boards/{boardId}/columns:
+    get:
+      summary: List columns
+  /columns/{columnId}/cards:
+    post:
+      summary: Create card
+  /cards/{cardId}:
+    patch:
+      summary: Update card
+  /cards/{cardId}/move:
+    post:
+      summary: Move card
+  /cards/{cardId}/comments:
+    get:
+      summary: List comments
+    post:
+      summary: Add comment
+  /workspaces/{workspaceId}/labels:
+    get:
+      summary: List labels
+    post:
+      summary: Create label
+  /workspaces/{workspaceId}/audit-logs:
+    get:
+      summary: List audit logs
