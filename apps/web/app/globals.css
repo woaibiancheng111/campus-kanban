@@ -1,0 +1,45 @@
+:root {
+  --bg: #f3f5f9;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-weak: #dbeafe;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif; }
+
+.page { max-width: 1200px; margin: 0 auto; padding: 24px 16px 40px; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.title { margin: 0; font-size: 28px; }
+.sub { margin: 6px 0 0; color: var(--muted); }
+
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px; box-shadow: 0 6px 24px rgba(15, 23, 42, .06); }
+
+.loginRow { display: grid; grid-template-columns: 1fr 1fr auto auto auto; gap: 8px; }
+.input { padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: #fff; }
+.btn { border: 0; background: var(--primary); color: #fff; padding: 10px 14px; border-radius: 10px; cursor: pointer; }
+.btn.secondary { background: #0f766e; }
+.btn.ghost { background: #374151; }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+
+.meta { margin-top: 10px; color: var(--muted); font-size: 13px; }
+.error { margin-top: 8px; color: #b91c1c; font-size: 13px; }
+
+.boardWrap { margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(260px, 1fr)); gap: 12px; }
+.column { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 12px; min-height: 220px; }
+.columnTitle { display: flex; justify-content: space-between; align-items: center; margin: 0 0 10px; font-size: 16px; }
+.badge { background: var(--primary-weak); color: var(--primary); border-radius: 999px; font-size: 12px; padding: 3px 10px; }
+
+.card { background: #fafafa; border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 10px; }
+.cardTitle { margin: 0 0 6px; font-weight: 600; }
+.cardDesc { margin: 0 0 10px; color: var(--muted); font-size: 13px; min-height: 20px; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; }
+.smallBtn { border: 1px solid var(--border); background: #fff; border-radius: 8px; padding: 6px 8px; cursor: pointer; font-size: 12px; }
+
+@media (max-width: 900px) {
+  .loginRow { grid-template-columns: 1fr 1fr; }
+  .boardWrap { grid-template-columns: 1fr; }
+}
